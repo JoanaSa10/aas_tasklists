@@ -1,6 +1,16 @@
 package org.ual.aas.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
 public class Task {
+	@Id
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	private int id;
 	private String description;
 	private String state;
@@ -9,11 +19,10 @@ public class Task {
 		super();
 	}
 
-	public Task(int id, String description, String state) {
+	public Task(String description) {
 		super();
-		this.id = id;
 		this.description = description;
-		this.state = state;
+		this.state = "doing";
 	}
 
 	public int getId() {
